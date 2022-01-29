@@ -1,13 +1,11 @@
 func sortArrayByParity(nums []int) []int {
-	if len(nums) < 2 {
-		return nums
-	}
-	for i := 0; i < len(nums); i++ {
-		if nums[i]%2 == 0 {
-			tmp := []int{nums[i]}
-			tmp = append(tmp, nums[:i]...)
-			tmp = append(tmp, nums[i+1:]...)
-			_ = copy(nums, tmp)
+	i, j := 0, len(nums)-1
+	for i < j {
+		if nums[i]%2 != 0 {
+			nums[i], nums[j] = nums[j], nums[i]
+			j--
+		} else {
+			i++
 		}
 	}
 	return nums
